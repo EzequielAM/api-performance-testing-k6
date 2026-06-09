@@ -1,1 +1,42 @@
-# api-performance-testing-k6
+# API Performance & Stress Testing Framework (k6) 🚀
+
+This repository contains a lightweight, high-performance API testing framework built with **k6** (by Grafana) and **JavaScript**. It is designed to stress-test microservices, evaluate system stability under concurrent loads, and validate strict service-level agreements (SLAs).
+
+---
+
+## Tech Stack & Architecture
+
+* **Engine:** k6 (Go-based high-performance tool)
+* **Language:** JavaScript (ES6 Modules)
+* **Target Environment:** HTTPBin REST API (`https://httpbin.org`)
+
+---
+
+## Test Strategy & Load Profile
+
+The test simulates a realistic **Stress Testing** scenario divided into three distinct execution stages (Ramping Up, Peak Load, and Ramping Down) to evaluate how the infrastructure handles sudden traffic spikes.
+
+### Load Profile (Stages):
+1. **Ramp Up:** 0 to 20 Virtual Users (VUs) over **30 seconds**.
+2. **Peak Load:** Sustained plateau of 50 concurrent VUs for **1 minute**.
+3. **Ramp Down:** Controlled scale-down from 50 to 0 VUs over **20 seconds**.
+
+### Performance Thresholds (SLAs):
+We define non-functional criteria to ensure service health under load. If any of these metrics are crossed, the test build fails automatically:
+* **`http_req_failed`**: Less than 1% of total requests can return an error (`rate < 0.01`).
+* **`http_req_duration`**: 95% of all requests must resolve in less than 1500 milliseconds (`p(95) < 1500`).
+
+---
+
+## Getting Started
+
+### 1. Prerequisites
+Install k6 on your local operating system:
+* **Windows (via Winget):** `winget install gnu.k6`
+* **Mac (via Homebrew):** `brew install k6`
+
+### 2. Execution
+Clone this repository, navigate to the project directory, and trigger the simulation using the command line:
+
+```bash
+k6 run stress-test.js
