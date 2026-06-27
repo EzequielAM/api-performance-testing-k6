@@ -1,4 +1,4 @@
-# API Performance & Stress Testing Framework (k6) 🚀
+# API Performance & Stress Testing Framework (k6) 
 
 This repository contains a lightweight, high-performance API testing framework built with **k6** (by Grafana) and **JavaScript**. It is designed to stress-test microservices, evaluate system stability under concurrent loads, and validate strict service-level agreements (SLAs).
 
